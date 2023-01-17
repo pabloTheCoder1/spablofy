@@ -1,0 +1,56 @@
+.signInRoom button, .infos button{
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    font-weight: 700;
+    font-family: Helvetica,"sans-serif";
+    transition: all .2s;
+    padding: 10px 20px;
+    border-radius: 100px;
+    background: #FF8B00;
+    border: 1px solid transparent;
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+}
+
+.signInRoom button:hover, .infos button:hover {
+    background: #444444;
+    border: 1px solid white
+}
+  
+.signInRoom button > svg, .infos button > svg{
+    width: 34px;
+    margin-left: 10px;
+    transition: transform .3s ease-in-out;
+}
+  
+.signInRoom button:hover svg, .infos button:hover svg {
+    transform: translateX(5px);
+}
+  
+.signInRoom button:active, .infos button:active {
+    transform: scale(0.95);
+}
+
+.profilePicture{
+    width: 55px;
+    border-radius: 50px;
+    margin-right: 10px;
+    border: 2px solid#444444;;
+}
+
+.infos{
+    display: flex;
+    align-items: center;
+    margin-top: 8vw;
+}
+
+@media (max-width: 700px) {
+    .header{
+        display: block;
+    }
+    .infos{
+        justify-content: center;
+        margin-top: 20px;
+    }
+}

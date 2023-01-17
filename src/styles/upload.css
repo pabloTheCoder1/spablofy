@@ -1,0 +1,22 @@
+.uploadSection{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 13vw;
+}
+
+.upload{
+    width: 40vw;
+    height: 40vh;
+    background-color: #444444;
+    border-radius: 30px;
+}
+
+@media (max-width: 700px) {
+    .uploadSection{
+        margin-top: 180px;
+    }
+    .upload{
+        width: 60vw;
+    }
+}
