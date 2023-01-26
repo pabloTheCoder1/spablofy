@@ -1,21 +1,18 @@
-import React from "react";
-import './styles/general.css';
-import './styles/buttons.css';
-import './styles/upload.css';
-import Home from "./Home.js"
-import Upload from "./Upload.js"
+import React from "react"
+import './styles/general.css'
+import './styles/buttons.css'
+import './styles/upload.css'
 import logo from "./images/logo.png"
+import Upload from "./Upload.js"
 
-import firebase from "firebase/compat/app";
-import "firebase/compat/firestore";
-import "firebase/compat/auth";
-import "firebase/compat/storage";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { useCollectionData } from "react-firebase-hooks/firestore";
-import { useState, useRef } from "react";
-import { getStorage, ref, deleteObject } from "firebase/storage";
-import { Button } from "@mui/material";
-
+import firebase from "firebase/compat/app"
+import "firebase/compat/firestore"
+import "firebase/compat/auth"
+import "firebase/compat/storage"
+import { useAuthState } from "react-firebase-hooks/auth"
+import { useCollectionData } from "react-firebase-hooks/firestore"
+import { useState, useRef } from "react"
+import { getStorage, ref, deleteObject } from "firebase/storage"
 
 firebase.initializeApp({
   apiKey: "AIzaSyCI-m2KDJP5_pGbSCm4uCYNxY2882egk7c",
@@ -58,17 +55,25 @@ function App() {
           </>) : (<img src={logo} alt="logo" className="logo"/>)}
           </header>
         <div className="Page">
-          {user ? <Home /> : <SignInRoom />}
+          {user ? <Home/> : <SignInRoom />}
         </div>
       </body>
     </div>
   );
 }
 
+const Home = () => {
+  return (
+    <div className='home'>
+      <Upload/>
+    </div>
+  )
+}
+
 function SignInRoom() {
   const SignInWithGoogle = () =>{
-     const provider = new firebase.auth.GoogleAuthProvider();
-     auth.signInWithPopup(provider);
+    const provider = new firebase.auth.GoogleAuthProvider();
+    auth.signInWithPopup(provider);
   }
   return (
     <div className="div">
@@ -88,5 +93,6 @@ function SignInRoom() {
     </div>
   )
 }
+
 
 export default App;

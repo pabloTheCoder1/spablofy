@@ -1,4 +1,4 @@
-.signInRoom button, .infos button{
+.signInRoom button, .infos button, .upload button{
     color: rgb(255, 255, 255);
     cursor: pointer;
     font-weight: 700;
@@ -15,9 +15,15 @@
 
 .signInRoom button:hover, .infos button:hover {
     background: #444444;
-    border: 1px solid white
+    border: 1px solid white;
 }
   
+.uploadButton label:hover{
+    background: #444444;
+    border: 1px solid white;
+    transition: 0.2s ease-in-out;
+}
+
 .signInRoom button > svg, .infos button > svg{
     width: 34px;
     margin-left: 10px;
@@ -36,7 +42,7 @@
     width: 55px;
     border-radius: 50px;
     margin-right: 10px;
-    border: 2px solid#444444;;
+    border: 2px solid#444444;
 }
 
 .infos{

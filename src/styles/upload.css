@@ -1,15 +1,77 @@
 .uploadSection{
     display: flex;
     justify-content: center;
-    align-items: center;
-    margin-top: 13vw;
+    margin-top: 19vw;
 }
 
 .upload{
     width: 40vw;
-    height: 40vh;
     background-color: #444444;
     border-radius: 30px;
+    box-shadow: 7px 7px #888888;
+}
+
+.typewriter p{
+    color: rgb(255, 255, 255);
+    font-size: 15px;
+    font-weight: 500;
+    margin: 20px;
+    font-family: Verdana, Geneva, sans-serif;
+}
+
+label p{
+    color: rgb(255, 255, 255);
+    font-size: 15px;
+    font-family: Helvetica,"sans-serif";
+    margin-left: 15px;
+    font-weight: 700;
+}
+
+label{
+    cursor: pointer;
+    border-radius: 100px;
+    background: #FF8B00;
+    border: 1px solid transparent;
+}
+
+.uploadButton .button{
+    display: flex;
+    justify-content: center;
+}
+
+.uploadButton{
+    display: flex;
+    justify-content: center;
+}
+
+.dropzone {
+    border: 2px dashed #FF8B00;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 25px;
+    border-radius: 10px;
+    height: 80px;
+  }
+
+.dropzone p{
+    color: rgb(255, 255, 255);
+    font-family: Verdana, Geneva, sans-serif;
+}
+
+.pickImage{
+    width: 20px;
+    margin: 15px;
+}
+
+input[type="file"]{
+    display: none;
+}
+
+label{
+    display: flex;
+    align-items: center;
+    background-color: #FF8B00;
 }
 
 @media (max-width: 700px) {
@@ -18,5 +80,9 @@
     }
     .upload{
         width: 60vw;
+        
+    }
+    .upload p{
+        font-size: 15px;
     }
 }
