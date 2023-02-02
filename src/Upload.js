@@ -2,7 +2,10 @@ import React from 'react'
 import upload from "./images/upload.png"
 import firebase from "firebase/compat/app"
 import "firebase/compat/auth"
-import SendFirebase from './SendFirebase'
+import "firebase/compat/firestore"
+import "firebase/compat/storage";
+import { getStorage, ref, deleteObject } from "firebase/storage";
+import { useCollectionData } from "react-firebase-hooks/firestore"
 var file1
 
 firebase.initializeApp({
@@ -16,8 +19,14 @@ firebase.initializeApp({
   })
 
 const auth = firebase.auth();
+const firestore = firebase.firestore();
+const store = firebase.storage();
+const storage = getStorage();
 
 const Upload = () => {
+  const songsRef = firestore.collection("songs");
+  const query = songsRef.orderBy('createdAt').limit(200);
+  const [songs] = useCollectionData(query, {idField: 'id'});
     function dropHandler(ev) {
       ev.preventDefault();
       if (ev.dataTransfer.items) {
@@ -33,7 +42,7 @@ const Upload = () => {
           console.log(file1);
         });
       }
-      document.getElementById('file').value = null
+      SendFirebase(file1)
     }
     
     function dragOverHandler(ev) {
@@ -44,8 +53,31 @@ const Upload = () => {
         ev.preventDefault()
         file1 = ev.target.files[0]
         console.log(file1)
-        document.getElementById('file').value = null
+        SendFirebase(file1)
       }
+
+    const SendFirebase = async(e) => {
+      const today = new Date();
+      const{ uid } = auth.currentUser; 
+      await songsRef.add({
+        songName: e.name,
+        favourite: false,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+        time: (today.getHours()<10?'0':'') + today.getHours() + ':' + (today.getMinutes()<10?'0':'') + today.getMinutes(),
+        uid,
+      }); 
+      if (e){
+        const uploadTask = store.ref(`songs/${e.name}`).put(e);
+        uploadTask.on(
+          "state_changed",
+          snapshot => {},
+          error => {
+            alert(error)
+          },
+        );
+      }
+      alert("file uploaded correctly")
+    }
     
     return (
       <div className='uploadSection'>
@@ -55,7 +87,7 @@ const Upload = () => {
           </div>
           <div className='uploadButton'>
             <input type="file" id="file" onChange={handleChange}/>
-            <label for="file">
+            <label htmlFor="file">
                 <p>Upload</p><img src={upload} alt="image" className="pickImage"/>
             </label>
           </div>
