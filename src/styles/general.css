@@ -1,7 +1,10 @@
 body{
     margin: 0;
     padding: 0;
-    background-color: #FFC60B;
+    background-image: url("../images/sfondo.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
 }
 
 .App{
@@ -39,6 +42,9 @@ header{
         height: 12vw;
     }
     .logo{height: 18vw;}
+    .signInRoom{
+        margin-top: 25vh;
+    }    
 }
 
 @media (min-width: 701px) {

@@ -78,7 +78,6 @@ const Upload = () => {
       }
       alert("file uploaded correctly")
     }
-    
     return (
       <div className='uploadSection'>
         <div className='upload'>

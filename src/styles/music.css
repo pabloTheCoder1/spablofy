@@ -1,0 +1,53 @@
+.playAndName{
+    border-radius: 20px;
+    width: 35vw;
+    background-color: #444444;
+    box-shadow: 7px 7px #888888;
+    padding: 20px;
+}
+
+.playSection{
+    display: flex;
+    justify-content: center;
+    margin-top: 7vw;
+}
+.singolSong{
+    background-color: black;
+    color: aliceblue;
+}
+
+.singolSong p{
+    word-break:break-all;
+}
+.playAndName{
+    margin: 20px;
+}
+
+.playAndName p{
+    color: rgb(255, 255, 255);
+    font-size: 15px;
+    font-weight: 500;
+    font-family: Verdana, Geneva, sans-serif;
+    max-width: 280px;
+    word-wrap:break-word;
+    margin-top: 0;
+}
+
+.playButton{
+    display: flex;
+    justify-content: center;
+}
+
+.playAndName img{
+    height: 100px;
+    cursor: pointer;
+}
+
+@media (max-width: 700px) {
+    .music{
+        margin-top: 40px;
+    }
+    .playIcon{
+        height: 100px;
+    }
+}
