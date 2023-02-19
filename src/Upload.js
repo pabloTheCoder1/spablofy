@@ -61,9 +61,9 @@ const Upload = () => {
       const{ uid } = auth.currentUser; 
       await songsRef.add({
         songName: e.name,
+        originalName: e.name,
         favourite: false,
         createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-        time: (today.getHours()<10?'0':'') + today.getHours() + ':' + (today.getMinutes()<10?'0':'') + today.getMinutes(),
         uid,
       }); 
       if (e){

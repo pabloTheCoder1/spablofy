@@ -2,6 +2,7 @@ import React from "react"
 import './styles/general.css'
 import './styles/buttons.css'
 import './styles/upload.css'
+import './styles/songs.css'
 import './styles/music.css'
 import logo from "./images/logo.png"
 import Upload from "./Upload.js"
@@ -12,7 +13,6 @@ import "firebase/compat/firestore"
 import "firebase/compat/auth"
 import "firebase/compat/storage"
 import { useAuthState } from "react-firebase-hooks/auth"
-import { initializeApp } from 'firebase/app';
 import { useCollectionData } from "react-firebase-hooks/firestore"
 import { useState, useRef } from "react"
 import { getStorage, ref, deleteObject } from "firebase/storage"

@@ -1,5 +1,5 @@
 .playAndName{
-    border-radius: 20px;
+    border-radius: 10px;
     width: 35vw;
     background-color: #444444;
     box-shadow: 7px 7px #888888;
@@ -11,14 +11,7 @@
     justify-content: center;
     margin-top: 7vw;
 }
-.singolSong{
-    background-color: black;
-    color: aliceblue;
-}
 
-.singolSong p{
-    word-break:break-all;
-}
 .playAndName{
     margin: 20px;
 }
@@ -26,7 +19,6 @@
 .playAndName p{
     color: rgb(255, 255, 255);
     font-size: 15px;
-    font-weight: 500;
     font-family: Verdana, Geneva, sans-serif;
     max-width: 280px;
     word-wrap:break-word;
@@ -39,7 +31,7 @@
 }
 
 .playAndName img{
-    height: 100px;
+    height: 60px;
     cursor: pointer;
 }
 
@@ -49,5 +41,8 @@
     }
     .playIcon{
         height: 100px;
+    }
+    .playAndName{
+        width: 55vw;  
     }
 }

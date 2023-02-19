@@ -7,7 +7,7 @@
 .upload{
     width: 40vw;
     background-color: #444444;
-    border-radius: 20px;
+    border-radius: 10px;
     box-shadow: 7px 7px #888888;
 }
 
@@ -50,7 +50,7 @@ label{
     justify-content: center;
     align-items: center;
     margin: 25px;
-    border-radius: 10px;
+    border-radius: 5px;
     height: 80px;
   }
 
@@ -79,8 +79,7 @@ label{
         margin-top: 180px;
     }
     .upload{
-        width: 60vw;
-        
+        width: 60vw;  
     }
     .upload p{
         font-size: 15px;

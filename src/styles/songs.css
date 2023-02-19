@@ -1,0 +1,57 @@
+.singolSong{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.songs{
+    margin-top: 7vw;
+}
+
+.songInfos{
+    background-color: #444444;
+    border-radius: 5px;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.icons{
+    width: 40%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.icons img{
+    height: 20px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.singolSong p{
+    word-break:break-all;
+    margin: 0;
+    width: 60%;
+    color: rgb(255, 255, 255);
+    font-size: 15px;
+    font-weight: 500;
+    font-family: Verdana, Geneva, sans-serif;
+}
+
+.heart{
+    width:24px;
+    height:24px;
+    stroke: rgb(255, 255, 255);
+    stroke-width:1;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+}
+
+.heart.liked{
+    fill:red;
+}
+
+.heart.unliked{
+    fill:none;
+}
