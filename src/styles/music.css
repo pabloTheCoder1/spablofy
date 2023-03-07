@@ -1,9 +1,15 @@
+.music{
+    margin-bottom: 70px;
+}
+
 .playAndName{
-    border-radius: 10px;
+    border-radius: 5px;
     width: 35vw;
     background-color: #444444;
-    box-shadow: 7px 7px #888888;
     padding: 20px;
+    box-shadow: 2px 2px 10px 2px #000000;
+    -webkit-box-shadow: 2px 2px 10px 2px #000000;
+    -moz-box-shadow: 2px 2px 10px 2px #000000;
 }
 
 .playSection{
@@ -12,17 +18,14 @@
     margin-top: 7vw;
 }
 
-.playAndName{
-    margin: 20px;
-}
-
 .playAndName p{
     color: rgb(255, 255, 255);
     font-size: 15px;
     font-family: Verdana, Geneva, sans-serif;
-    max-width: 280px;
     word-wrap:break-word;
     margin-top: 0;
+    display: flex;
+    justify-content: center;
 }
 
 .playButton{
@@ -33,16 +36,17 @@
 .playAndName img{
     height: 60px;
     cursor: pointer;
+    margin: 50px;
 }
 
 @media (max-width: 700px) {
     .music{
-        margin-top: 40px;
+        margin-top: 70px;
     }
     .playIcon{
         height: 100px;
     }
     .playAndName{
-        width: 55vw;  
+        width: 50vw;  
     }
 }

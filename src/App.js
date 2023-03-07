@@ -18,13 +18,13 @@ import { useState, useRef } from "react"
 import { getStorage, ref, deleteObject } from "firebase/storage"
 
 firebase.initializeApp({
-  apiKey: "AIzaSyCI-m2KDJP5_pGbSCm4uCYNxY2882egk7c",
-  authDomain: "spablofy.firebaseapp.com",
-  projectId: "spablofy",
-  storageBucket: "spablofy.appspot.com",
-  messagingSenderId: "444494815294",
-  appId: "1:444494815294:web:33311a35ea003ccbc0b16f",
-  measurementId: "G-2G7S4M90BR"
+  apiKey: "AIzaSyA4u7WFVEMqUinHv-WjMDC31EH5u2WFCU0",
+  authDomain: "spablofy-5113e.firebaseapp.com",
+  projectId: "spablofy-5113e",
+  storageBucket: "spablofy-5113e.appspot.com",
+  messagingSenderId: "841588959450",
+  appId: "1:841588959450:web:4792be0e943ea572609de3",
+  measurementId: "G-4F5NG9M5ZP"
 })
 
 const auth = firebase.auth();

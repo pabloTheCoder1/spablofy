@@ -7,14 +7,16 @@
 .upload{
     width: 40vw;
     background-color: #444444;
-    border-radius: 10px;
-    box-shadow: 7px 7px #888888;
+    border-radius: 5px;
+    box-shadow: 2px 2px 10px 2px #000000;
+    -webkit-box-shadow: 2px 2px 10px 2px #000000;
+    -moz-box-shadow: 2px 2px 10px 2px #000000;
 }
 
 .typewriter p{
     color: rgb(255, 255, 255);
     font-size: 15px;
-    font-weight: 500;
+    font-weight:400;
     margin: 20px;
     font-family: Verdana, Geneva, sans-serif;
 }
@@ -25,13 +27,6 @@ label p{
     font-family: Helvetica,"sans-serif";
     margin-left: 15px;
     font-weight: 700;
-}
-
-label{
-    cursor: pointer;
-    border-radius: 100px;
-    background: #FF8B00;
-    border: 1px solid transparent;
 }
 
 .uploadButton .button{
@@ -68,10 +63,13 @@ input[type="file"]{
     display: none;
 }
 
-label{
+.uploadButton label{
     display: flex;
     align-items: center;
     background-color: #FF8B00;
+    cursor: pointer;
+    border-radius: 100px;
+    border: 1px solid transparent;
 }
 
 @media (max-width: 700px) {

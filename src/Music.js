@@ -12,15 +12,16 @@ import { useCollectionData } from "react-firebase-hooks/firestore"
 import { useState, useRef } from "react"
 import "firebase/firestore";
 import { setDoc, doc } from "firebase/firestore";
+import { Howl } from "howler";
 
 firebase.initializeApp({
-  apiKey: "AIzaSyCI-m2KDJP5_pGbSCm4uCYNxY2882egk7c",
-  authDomain: "spablofy.firebaseapp.com",
-  projectId: "spablofy",
-  storageBucket: "spablofy.appspot.com",
-  messagingSenderId: "444494815294",
-  appId: "1:444494815294:web:33311a35ea003ccbc0b16f",
-  measurementId: "G-2G7S4M90BR"
+  apiKey: "AIzaSyA4u7WFVEMqUinHv-WjMDC31EH5u2WFCU0",
+  authDomain: "spablofy-5113e.firebaseapp.com",
+  projectId: "spablofy-5113e",
+  storageBucket: "spablofy-5113e.appspot.com",
+  messagingSenderId: "841588959450",
+  appId: "1:841588959450:web:4792be0e943ea572609de3",
+  measurementId: "G-4F5NG9M5ZP"
   })
 
 const auth = firebase.auth();
@@ -32,25 +33,49 @@ const Music = () => {
   const orderedSongs = songsRef.orderBy('songName').limit(200);
   const [songs] = useCollectionData(orderedSongs, {idField: 'id'});
   const [paused, setPaused] = useState(false)
-  const selectedSongs = songs && songs.filter((item) => item.uid == auth.currentUser.uid)
+  const [namePlaying, setNamePlaying] = useState("Select the song you want to listen")
+  const [sound, setSound] = useState(null)
+  const [checked, setChecked] = useState(false);
+  var selectedSongs = songs && songs.filter((item) => item.uid == auth.currentUser.uid)
   let img = play
-  function toggleCheck() {
-    setPaused(!paused)
-  }
-  if (!paused) {
+  if (!paused){
     img = play
   }
-  else {
+  else{
     img = pause
   }
+  
+  function togglePause(){
+    if (sound.playing()){
+      setPaused(!paused)
+      sound.pause()
+    }
+    else{
+      sound.play()
+      setPaused(!paused)
+    }
+  }
+
+  const handleSwitchChange = () => {
+    setChecked(!checked);
+  };
+
   return (
     <div className="music">
       <div className='playSection'>
         <div className='playAndName'>
-          <p>Dream it</p>
+          <p>{namePlaying}</p>
           <div className='playButton'>
-            <img src={img} alt="" className='playIcon' onClick={toggleCheck}/>
+            <img src={img} alt="" className='playIcon' onClick={togglePause}/>
           </div>
+          <div className='favSwitch'>
+          <p>Favourites</p>
+          <label className="switch">
+            <input type="checkbox" checked={checked} 
+            onChange={handleSwitchChange}></input>
+            <span className="slider"></span>
+          </label>
+        </div>
         </div>
       </div>
         {songs && (
@@ -63,7 +88,7 @@ const Music = () => {
   )
 
   function SingolSong(props){
-    const{ uid, favourite, createdAt, songName, originalName } = props.song;
+    const{ uid, favourite, createdAt, songName, originalName, songUrl} = props.song;
     const[liked, setLiked] = useState(favourite)
     const heartClass = liked ? 'liked' : 'unliked';
 
@@ -74,7 +99,6 @@ const Music = () => {
         .limit(1)
         .where("createdAt", "==", createdAt)
         .get();
-
       const toggledDoc = snapshot.docs[0];
       const songRef = firestore.collection('songs').doc(toggledDoc.id);
       songRef.update({"favourite": !favourite});
@@ -90,32 +114,50 @@ const Music = () => {
       const toggledDoc = snapshot.docs[0];
       const songRef = firestore.collection('songs').doc(toggledDoc.id);
       songRef.delete()
-      const picDelete = ref(storage, "songs/"+ originalName);
-      deleteObject(picDelete);
+      const picDeleted = ref(storage, "songs/"+ originalName);
+      deleteObject(picDeleted);
     }
 
-    var windowSize = useRef([window.innerWidth, window.innerHeight]);
+    const playingSong = new Howl ({
+        src: songUrl,
+        html5: true,
+      })
+      
+    const callSound = () => {
+      if (sound){
+        sound.stop()
+        if (!paused){
+          setPaused(true)
+        }
+      }
+      else{
+        setPaused(!paused)
+      }
+      playingSong.play()
+      setSound(playingSong)
+      setNamePlaying(songName)
+    }
+
     var string = songName;
     var length = 40
     var trimmedString = string.length > length ? 
       string.substring(0, length - 3) + "..." : 
       string;
     return (
-      <div className='singolSong'>
+      <div className={`singolSong ${checked & !favourite ? "hidden" : ""}`}>
         <div className='songInfos'>
-          <p>{trimmedString}</p>
+          <p onClick={() => {callSound()}}>{trimmedString}</p>
           <div className='icons'>
             <svg onClick={toggleFavourite} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" 
             className={`heart ${heartClass}`}><path d="M20.84 4.61a5.5 5.5 0 0
             0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 
             21.23l7.78-7.78 1.06-1.06a5.5 5.5 6 0 0 0-7.78z"></path></svg>
-            <img src={edit} alt="" />
             <img src={trash} alt="" onClick={deleteSong}/>
           </div>
         </div>
-      </div>)
+      </div>
+      )
   }
 }
-
 
 export default Music

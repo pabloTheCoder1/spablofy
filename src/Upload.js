@@ -4,18 +4,18 @@ import firebase from "firebase/compat/app"
 import "firebase/compat/auth"
 import "firebase/compat/firestore"
 import "firebase/compat/storage";
-import { getStorage, ref, deleteObject } from "firebase/storage";
+import { getStorage, ref, deleteObject, getMetadata } from "firebase/storage";
 import { useCollectionData } from "react-firebase-hooks/firestore"
 var file1
 
 firebase.initializeApp({
-  apiKey: "AIzaSyCI-m2KDJP5_pGbSCm4uCYNxY2882egk7c",
-  authDomain: "spablofy.firebaseapp.com",
-  projectId: "spablofy",
-  storageBucket: "spablofy.appspot.com",
-  messagingSenderId: "444494815294",
-  appId: "1:444494815294:web:33311a35ea003ccbc0b16f",
-  measurementId: "G-2G7S4M90BR"
+  apiKey: "AIzaSyA4u7WFVEMqUinHv-WjMDC31EH5u2WFCU0",
+  authDomain: "spablofy-5113e.firebaseapp.com",
+  projectId: "spablofy-5113e",
+  storageBucket: "spablofy-5113e.appspot.com",
+  messagingSenderId: "841588959450",
+  appId: "1:841588959450:web:4792be0e943ea572609de3",
+  measurementId: "G-4F5NG9M5ZP"
   })
 
 const auth = firebase.auth();
@@ -52,32 +52,30 @@ const Upload = () => {
     const handleChange = (ev) => {
         ev.preventDefault()
         file1 = ev.target.files[0]
-        console.log(file1)
         SendFirebase(file1)
       }
 
     const SendFirebase = async(e) => {
-      const today = new Date();
       const{ uid } = auth.currentUser; 
-      await songsRef.add({
-        songName: e.name,
-        originalName: e.name,
-        favourite: false,
-        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-        uid,
-      }); 
-      if (e){
-        const uploadTask = store.ref(`songs/${e.name}`).put(e);
-        uploadTask.on(
-          "state_changed",
-          snapshot => {},
-          error => {
-            alert(error)
-          },
-        );
-      }
+      store.ref(`songs/${e.name}`).put(e)
+        .then(() => {
+          const storageRef = store.ref("/songs")
+          storageRef.child(e.name).getDownloadURL()
+        .then(url => {
+          let songURL = url
+          songsRef.add({
+            songUrl: songURL,
+            songName: e.name,
+            originalName: e.name,
+            favourite: false,
+            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+            uid,
+          })
+        })
+      })
       alert("file uploaded correctly")
     }
+
     return (
       <div className='uploadSection'>
         <div className='upload'>
@@ -93,7 +91,7 @@ const Upload = () => {
           <div className='dragit'>
             <div className="dropzone" id="drop_zone"
               onDrop={dropHandler} onDragOver={dragOverHandler}>
-              <p>drop it</p>
+              <p>Drop it</p>
             </div>
           </div>
         </div>
