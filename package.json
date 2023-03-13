@@ -9,6 +9,7 @@
     "firebase": "^9.15.0",
     "helmet": "^6.0.1",
     "howler": "^2.2.3",
+    "kill-port": "^2.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-firebase-hooks": "^5.1.1",

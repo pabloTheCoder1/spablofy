@@ -4,29 +4,24 @@ import firebase from "firebase/compat/app"
 import "firebase/compat/auth"
 import "firebase/compat/firestore"
 import "firebase/compat/storage";
-import { getStorage, ref, deleteObject, getMetadata } from "firebase/storage";
-import { useCollectionData } from "react-firebase-hooks/firestore"
 var file1
 
 firebase.initializeApp({
-  apiKey: "AIzaSyA4u7WFVEMqUinHv-WjMDC31EH5u2WFCU0",
-  authDomain: "spablofy-5113e.firebaseapp.com",
-  projectId: "spablofy-5113e",
-  storageBucket: "spablofy-5113e.appspot.com",
-  messagingSenderId: "841588959450",
-  appId: "1:841588959450:web:4792be0e943ea572609de3",
-  measurementId: "G-4F5NG9M5ZP"
+  apiKey: "AIzaSyDb9ToVXh6QbqjgbFod3xx30cxmhlIYNlY",
+  authDomain: "spablofy-f1c91.firebaseapp.com",
+  projectId: "spablofy-f1c91",
+  storageBucket: "spablofy-f1c91.appspot.com",
+  messagingSenderId: "978587271538",
+  appId: "1:978587271538:web:f54480ea6abf40e9291deb",
+  measurementId: "G-PRZ15DVRBZ"
   })
 
 const auth = firebase.auth();
 const firestore = firebase.firestore();
 const store = firebase.storage();
-const storage = getStorage();
 
 const Upload = () => {
   const songsRef = firestore.collection("songs");
-  const query = songsRef.orderBy('createdAt').limit(200);
-  const [songs] = useCollectionData(query, {idField: 'id'});
     function dropHandler(ev) {
       ev.preventDefault();
       if (ev.dataTransfer.items) {
@@ -39,7 +34,6 @@ const Upload = () => {
       } else {
         [...ev.dataTransfer.files].forEach((file) => {
           file1 = file
-          console.log(file1);
         });
       }
       SendFirebase(file1)
@@ -66,7 +60,6 @@ const Upload = () => {
           songsRef.add({
             songUrl: songURL,
             songName: e.name,
-            originalName: e.name,
             favourite: false,
             createdAt: firebase.firestore.FieldValue.serverTimestamp(),
             uid,
@@ -80,10 +73,10 @@ const Upload = () => {
       <div className='uploadSection'>
         <div className='upload'>
           <div className="typewriter">
-            <p>Hello {auth.currentUser.displayName}! Upload or drag your mp3 file right here.</p>
+            <p>Hello {auth.currentUser.displayName}! Upload or drag your .mp3 file right here.</p>
           </div>
           <div className='uploadButton'>
-            <input type="file" id="file" onChange={handleChange}/>
+            <input type="file" id="file" accept="audio/mp3" onChange={handleChange}/>
             <label htmlFor="file">
                 <p>Upload</p><img src={upload} alt="image" className="pickImage"/>
             </label>

@@ -15,13 +15,13 @@ import { setDoc, doc } from "firebase/firestore";
 import { Howl } from "howler";
 
 firebase.initializeApp({
-  apiKey: "AIzaSyA4u7WFVEMqUinHv-WjMDC31EH5u2WFCU0",
-  authDomain: "spablofy-5113e.firebaseapp.com",
-  projectId: "spablofy-5113e",
-  storageBucket: "spablofy-5113e.appspot.com",
-  messagingSenderId: "841588959450",
-  appId: "1:841588959450:web:4792be0e943ea572609de3",
-  measurementId: "G-4F5NG9M5ZP"
+  apiKey: "AIzaSyDb9ToVXh6QbqjgbFod3xx30cxmhlIYNlY",
+  authDomain: "spablofy-f1c91.firebaseapp.com",
+  projectId: "spablofy-f1c91",
+  storageBucket: "spablofy-f1c91.appspot.com",
+  messagingSenderId: "978587271538",
+  appId: "1:978587271538:web:f54480ea6abf40e9291deb",
+  measurementId: "G-PRZ15DVRBZ"
   })
 
 const auth = firebase.auth();
@@ -37,12 +37,12 @@ const Music = () => {
   const [sound, setSound] = useState(null)
   const [checked, setChecked] = useState(false);
   var selectedSongs = songs && songs.filter((item) => item.uid == auth.currentUser.uid)
-  let img = play
-  if (!paused){
-    img = play
-  }
-  else{
-    img = pause
+
+  window.onkeypress = function(event) {
+    if (event.which == 32) {
+      event.preventDefault();
+      togglePause()
+    }
   }
   
   function togglePause(){
@@ -66,7 +66,9 @@ const Music = () => {
         <div className='playAndName'>
           <p>{namePlaying}</p>
           <div className='playButton'>
-            <img src={img} alt="" className='playIcon' onClick={togglePause}/>
+            <div className='playCircle'>
+              <img src={!paused ? play : pause} alt="" className='playIcon' onClick={togglePause}/>
+            </div>
           </div>
           <div className='favSwitch'>
           <p>Favourites</p>
@@ -81,14 +83,14 @@ const Music = () => {
         {songs && (
         <div className='songs'>
           {selectedSongs && selectedSongs.map(sng =>
-         <SingolSong key={sng.id} song={sng} />)}
+         <SingolSong key={sng.songName} song={sng} />)}
         </div>
         )}
     </div>
   )
 
   function SingolSong(props){
-    const{ uid, favourite, createdAt, songName, originalName, songUrl} = props.song;
+    const{ favourite, createdAt, songName, originalName, songUrl} = props.song;
     const[liked, setLiked] = useState(favourite)
     const heartClass = liked ? 'liked' : 'unliked';
 
@@ -135,11 +137,12 @@ const Music = () => {
       }
       playingSong.play()
       setSound(playingSong)
-      setNamePlaying(songName)
+      setNamePlaying(trimmedString)
     }
 
+    const windowSize = useRef([window.innerWidth, window.innerHeight]);
     var string = songName;
-    var length = 40
+    var length = windowSize.current[0] > 700 ? 100 : 40
     var trimmedString = string.length > length ? 
       string.substring(0, length - 3) + "..." : 
       string;
@@ -156,7 +159,7 @@ const Music = () => {
           </div>
         </div>
       </div>
-      )
+    )
   }
 }
 

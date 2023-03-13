@@ -13,6 +13,10 @@
     font-size: 15px;
 }
 
+.signInRoom button{
+    border: 1px solid white;
+}
+
 .signInRoom button:hover, .infos button:hover {
     background: #444444;
     border: 1px solid white;
@@ -59,6 +63,7 @@
  display: inline-block;
  width: 3em;
  height: 1.3em;
+ z-index: 0;
 }
 
 .switch input {

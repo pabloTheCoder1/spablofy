@@ -24,6 +24,7 @@
     font-family: Verdana, Geneva, sans-serif;
     word-wrap:break-word;
     margin-top: 0;
+    margin-bottom: 0;
     display: flex;
     justify-content: center;
 }
@@ -33,10 +34,17 @@
     justify-content: center;
 }
 
-.playAndName img{
+.playCircle{
+    display: flex;
+    border: 2px solid #FF8B00;
+    border-radius: 50%;
+    margin: 20px;
+}
+
+.playIcon{
     height: 60px;
     cursor: pointer;
-    margin: 50px;
+    margin: 30px;
 }
 
 @media (max-width: 700px) {
@@ -44,7 +52,7 @@
         margin-top: 70px;
     }
     .playIcon{
-        height: 100px;
+        height: 60px;
     }
     .playAndName{
         width: 50vw;  

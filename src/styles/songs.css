@@ -4,7 +4,7 @@
     margin-top: 10px;
 }
 
-.singolSong .hidden{
+.singolSong.hidden{
     display: none;
 }
 
@@ -41,7 +41,7 @@
 .singolSong p{
     word-break:break-all;
     margin: 0;
-    width: 60%;
+    width: 100%;
     color: rgb(255, 255, 255);
     font-size: 15px;
     font-weight: 500;
